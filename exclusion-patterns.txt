@@ -1,1 +1,4 @@
 # Put any regular expressions to exclude messages here, one regex per line
+parking complaint
+dangerous condition
+no blocking
