@@ -75,7 +75,9 @@ func main() {
 }
 
 func setup(o opts) (n notifier, p publisher.Interface, err error) {
-	content, err := ioutil.ReadFile("/srv/exclusion-patterns.txt")
+	path, err := os.Getwd()
+	log.Print(path)
+	content, err := ioutil.ReadFile("exclusion-patterns.txt")
 	if err != nil {
 		log.Print("[WARN] could not read 'exclusion-patterns.txt' file")
 	}
