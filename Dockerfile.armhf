@@ -39,6 +39,8 @@ RUN \
     chown -R app:app /srv && \
     chmod +x /srv/rss2twitter
 
+COPY /build/rss2twitter/exclusion-patterns.txt /srv/exclusion-patterns.txt
+
 WORKDIR /srv
 
 CMD ["/srv/rss2twitter", "--dry"]
