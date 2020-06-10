@@ -1,7 +1,5 @@
 FROM umputun/baseimage:buildgo-latest as build
 
-COPY ./exclusion-patterns.txt /srv/exclusion-patterns.txt
-
 WORKDIR /build/rss2twitter
 ADD . /build/rss2twitter
 
@@ -15,6 +13,8 @@ RUN \
 
 
 FROM umputun/baseimage:app-latest
+
+COPY ./exclusion-patterns.txt /srv/exclusion-patterns.txt
 
 COPY --from=build /build/rss2twitter/rss2twitter /srv/rss2twitter
 RUN \
