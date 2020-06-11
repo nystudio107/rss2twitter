@@ -17,6 +17,9 @@ services:
         max-size: "10m"
         max-file: "5"
 
+    volumes:
+      - ${PWD}/exclusion-patterns.txt:/srv/exclusion-patterns.txt
+
     environment:
       - "TEMPLATE={{.Title}} - {{.Link}} #mytag"
 
