@@ -10,8 +10,6 @@ services:
     container_name: rss2twitter
     hostname: rss2twitter
     restart: always
-    env_file: &env
-      - .env
 
     logging: &default_logging
       driver: json-file
@@ -19,6 +17,16 @@ services:
         max-size: "10m"
         max-file: "5"
 
+    volumes:
+      - ${PWD}/exclusion-patterns.txt:/srv/exclusion-patterns.txt
+
     environment:
+      - FEED=http://lorem-rss.herokuapp.com/feed?unit=second&interval=30
+      - REFRESH=1m
+      - TWI_CONSUMER_KEY
+      - TWI_CONSUMER_SECRET
+      - TWI_ACCESS_TOKEN
+      - TWI_ACCESS_SECRET
       - "TEMPLATE={{.Title}} - {{.Link}} #mytag"
-    # command: ["/srv/rss2twitter", "--dry"]
+
+  #  command: ["/srv/rss2twitter", "--dry"]
